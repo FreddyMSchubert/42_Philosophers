@@ -6,9 +6,11 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:58:27 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/09 09:29:43 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/01/11 09:49:15 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// validates and computes command line input
 
 #include "../philos.h"
 
