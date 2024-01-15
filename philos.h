@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philos.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: freddy <freddy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/11 10:15:40 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:34:55 by freddy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,36 @@ typedef struct s_inputs
 typedef struct s_philo_inputs
 {
 	int					phid;
+	unsigned long		program_start_time;
 	t_inputs			inputs;
 	pthread_mutex_t		*forks;
 }				t_philo_inputs;
 
 // --- IMPORTANT STUFF
 
-int			setup_philos(t_inputs	*inputs);
-void		*philo_loop(void *arg);
+pthread_t		*setup_philos(t_inputs	*inputs, unsigned long program_start_time);
+
+// --- PHILO ACTIONS
+
+void			*philo_loop(void *arg);
+int				philo_eat(t_philo_inputs *philo_inputs, unsigned long *last_meal_time, int *times_eaten);
+int				philo_think(t_philo_inputs *philo_inputs);
+int				philo_sleep(t_philo_inputs *philo_inputs);
 
 // --- UTILS
 
-void		logger(char type, char *message);
-int			ft_atoi(const char *s);
+void			logger(char type, char *message);
+int				ft_atoi(const char *s);
 
 // --- INPUT
 
-int			manage_input(int argc, char **argv, t_inputs	*inputs);
+int				manage_input(int argc, char **argv, t_inputs	*inputs);
 
 // --- PRINTING
 
-void		print_inputs(t_inputs inputs);
-void		print_philo_input_data(t_philo_inputs *philo_input);
+void			print_inputs(t_inputs inputs);
+void			print_philo_input_data(t_philo_inputs *philo_input);
+
+// --- TIME
+
+unsigned long	get_ms_timestamp(void);

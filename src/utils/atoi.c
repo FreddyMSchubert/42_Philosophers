@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
+/*   By: freddy <freddy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:46:23 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/09 08:48:01 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/01/15 10:17:30 by freddy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_atoi(const char *s)
 		if (s[i] == '-' || s[i] == '+')
 			i++;
 		else
-			return (0);
+			return (-1);
 	}
 	while (ft_isdigit(s[i]))
 	{
