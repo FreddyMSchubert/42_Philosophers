@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: freddy <freddy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:07 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/15 10:34:25 by freddy           ###   ########.fr       */
+/*   Updated: 2024/01/16 09:30:29 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_inputs(t_inputs inputs)
 	printf("Time to Eat: %d\n", inputs.time_to_eat);
 	printf("Time to Sleep: %d\n", inputs.time_to_sleep);
 	printf("Number of Times Each Philosopher Must Eat: %d\n", \
-							inputs.number_of_times_each_philosopher_must_eat);
+							inputs.times_a_philo_must_eat);
 }
 
 void	print_philo_input_data(t_philo_inputs *philo_input)

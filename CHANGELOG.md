@@ -2,14 +2,23 @@
 
 ## currently unfreed mallocs
 - forks
-- threads
 - philo inputs
 
 ## todo
 - fix input parsing
 	- no numbers?
 	- negative handling currently bad
-- define shared flag "death" that every thread checks
+- before having philo fall asleep, check whether he will starve during sleep. if so, only wait usleep that long and accurately time the death message
+
+### v0.4.0 - 16.01.2024
+- define shared flag "death" that every thread checks to signal if another thread
+	died and program should end
+- proper wraparound for forks of last philo, previously, it would access a non-existent fork
+- added nice function for philo state logging with colors
+- norminette improvements, code cleanup
+- renamed struct property number_of_times_each_philosopher_must_eat to something less lengthy
+
+---
 
 ### v0.3.0 - 15.01.2024
 - added timing.c, which gets milliseconds since Jan 1, 1970

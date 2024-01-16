@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: freddy <freddy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:14 by freddy            #+#    #+#             */
-/*   Updated: 2024/01/15 12:34:43 by freddy           ###   ########.fr       */
+/*   Updated: 2024/01/16 09:34:22 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,31 @@
 #include <stdio.h>  // for printf
 #include <unistd.h> // for usleep
 
-int		philo_eat(t_philo_inputs *philo_inputs, unsigned long *last_meal_time, int *times_eaten)
+int	philo_eat(t_philo_inputs *philo_inputs, \
+				unsigned long *last_meal_time, \
+				int *times_eaten)
 {
-	if (VERBOSE == 1)
-		printf("%d is starting eat attempt.\n", philo_inputs->phid);
-	pthread_mutex_lock(&philo_inputs->forks[philo_inputs->phid]);
-	printf("%lu\t%d has taken a fork\n", get_ms_timestamp() - philo_inputs->program_start_time, philo_inputs->phid);
-	pthread_mutex_lock(&philo_inputs->forks[philo_inputs->phid + 1]);
-	printf("%lu\t%d has taken a fork\n", get_ms_timestamp() - philo_inputs->program_start_time, philo_inputs->phid);
-	printf("%lu\t%d is eating\n", get_ms_timestamp() - philo_inputs->program_start_time, philo_inputs->phid);
+	int		fork1;
+	int		fork2;
+
+	fork1 = philo_inputs->phid;
+	fork2 = philo_inputs->phid + 1;
+	if (fork2 == philo_inputs->inputs.number_of_philosophers)
+		fork2 = 0;
+	if (fork1 == fork2)
+		return (-1);
+	pthread_mutex_lock(&philo_inputs->forks[fork1]);
+	log_philo_action(get_ms_timestamp() - philo_inputs->program_start_time, \
+							philo_inputs->phid, "has taken a fork");
+	pthread_mutex_lock(&philo_inputs->forks[fork2]);
+	log_philo_action(get_ms_timestamp() - philo_inputs->program_start_time, \
+						philo_inputs->phid, "has taken a fork");
+	log_philo_action(get_ms_timestamp() - philo_inputs->program_start_time, \
+						philo_inputs->phid, "is eating");
 	usleep(philo_inputs->inputs.time_to_eat * 1000);
 	*last_meal_time = get_ms_timestamp();
 	*times_eaten += 1;
-	pthread_mutex_unlock(&philo_inputs->forks[philo_inputs->phid]);
-	pthread_mutex_unlock(&philo_inputs->forks[philo_inputs->phid + 1]);
-	if (VERBOSE == 1)
-		printf("%d is done eating.\n", philo_inputs->phid);
+	pthread_mutex_unlock(&philo_inputs->forks[fork1]);
+	pthread_mutex_unlock(&philo_inputs->forks[fork2]);
 	return (0);
 }
