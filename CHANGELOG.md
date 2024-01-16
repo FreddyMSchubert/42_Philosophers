@@ -8,7 +8,9 @@
 - fix input parsing
 	- no numbers?
 	- negative handling currently bad
-- before having philo fall asleep, check whether he will starve during sleep. if so, only wait usleep that long and accurately time the death message
+
+### v0.5.0 - 16.01.2024
+- before having philo fall asleep, program now checks whether he will starve during sleep. if so, only wait usleep that long and accurately time the death message
 
 ### v0.4.0 - 16.01.2024
 - define shared flag "death" that every thread checks to signal if another thread

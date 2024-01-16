@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/16 09:31:39 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/01/16 11:02:24 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void			*philo_loop(void *arg);
 int				philo_eat(t_philo_inputs *philo_inputs, \
 							unsigned long *last_meal_time, int *times_eaten);
 int				philo_think(t_philo_inputs *philo_inputs);
-int				philo_sleep(t_philo_inputs *philo_inputs);
+int				philo_sleep(t_philo_inputs *philo_inputs, \
+							unsigned long last_meal_time);
 
 // --- UTILS
 
