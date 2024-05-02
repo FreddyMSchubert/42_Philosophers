@@ -1,7 +1,10 @@
 en.subject.pdf
 
 .vscode
+.idea
 
 philo
 
 .DS_Store
+
+*.o

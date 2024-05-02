@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:07 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/02 10:41:31 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:52:31 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void	print_inputs(t_inputs inputs)
 {
-	if (VERBOSE == 0)
+	if (VERBOSE != 1)
 		return ;
 	printf("Number of Philosophers: %d\n", inputs.number_of_philosophers);
 	printf("Time to Die: %d\n", inputs.time_to_die);

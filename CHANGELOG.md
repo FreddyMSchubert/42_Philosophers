@@ -9,11 +9,16 @@
 	- no numbers?
 	- negative handling currently bad
 
+### v0.5.2 - 02.05.2025
+- multiple completely inconsequential changes
+	- some of them even went so far as to change the code in any way whatsoever
+- added some helpful comments where necessary
+- removed submodules, they should both be unnecessary. libft isnt allowed and ft_printf is unnecessary now that weve got normal printf
+
 ### v0.5.1 - 02.05.2024
 - its been a while.
 - created an include folder, added colors.h for ansi color codes (had to change all header file references) & replaces previous color printouts
 - added readme
-- removed submodules, they should both be unnecessary. libft isnt allowed and ft_printf is unnecessary now that weve got normal printf
 - moved all imports to header for clarity & a better overview
 - for some reason, there was a compilation issue - easy to fix, but makes me anxious, i dont remember how i left this code
 

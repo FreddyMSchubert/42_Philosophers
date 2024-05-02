@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:48:57 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/02 10:47:35 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:12:02 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 */
 void	logger(char type, char *message)
 {
-	if (VERBOSE == 0)
+	if (VERBOSE != 1)
 		return ;
 	if (type == 'e')
 		printf("%sERROR%s: ", ANSI_COLOR_RED, ANSI_COLOR_RESET);

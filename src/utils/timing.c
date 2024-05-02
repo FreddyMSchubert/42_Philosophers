@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 10:20:58 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/02 10:45:00 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:53:32 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 unsigned long	get_ms_timestamp(void)
 {
 	struct timeval		tv;
-	unsigned long		time_in_millis;
+	unsigned long		time_in_ms;
 
 	gettimeofday(&tv, NULL);
-	time_in_millis = 1000 * tv.tv_sec + tv.tv_usec / 1000;
-	return (time_in_millis);
+	time_in_ms = 1000 * tv.tv_sec + tv.tv_usec / 1000;
+	return (time_in_ms);
 }

@@ -6,14 +6,11 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:14 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/02 10:39:29 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:08:23 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philos.h"
-
-#include <stdio.h>  // for printf
-#include <unistd.h> // for usleep
 
 int	philo_eat(t_philo_inputs *philo_inputs, \
 				unsigned long *last_meal_time, \

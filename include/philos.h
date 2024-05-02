@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/02 10:46:53 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:04:11 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h> // threads, duh
+#include <pthread.h>  // threads, duh
 #include <sys/time.h> // gettimeofday
 
-#include "./colors.h"
+#include "./colors.h" // ANSI color codes collection
 
 // --- STRUCTS
 
