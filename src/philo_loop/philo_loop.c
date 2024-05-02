@@ -6,13 +6,11 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/16 09:55:59 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:43:08 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../philos.h"
-
-#include <stdio.h> // for printf
+#include "../../include/philos.h"
 
 // Main loop for the philosopher threads
 
@@ -36,7 +34,7 @@ void	*philo_loop(void *arg)
 		if (times_eaten >= philo_inputs->inputs.times_a_philo_must_eat && \
 								philo_inputs->inputs.times_a_philo_must_eat > 0)
 			return (NULL);
-		philo_sleep(philo_inputs);
+		philo_sleep(philo_inputs, last_meal_time);
 		philo_think(philo_inputs);
 	}
 	log_philo_action(get_ms_timestamp() - philo_inputs->program_start_time, \

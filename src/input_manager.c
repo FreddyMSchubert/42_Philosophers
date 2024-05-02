@@ -6,13 +6,13 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:58:27 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/16 09:29:59 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:42:16 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // validates and computes command line input
 
-#include "../philos.h"
+#include "../include/philos.h"
 
 int	manage_input(int argc, char **argv, t_inputs	*inputs)
 {

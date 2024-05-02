@@ -6,14 +6,13 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:07 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/16 09:30:29 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:41:31 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // collection of functions to print various things specific to program
 
-#include "../../philos.h"
-#include <stdio.h>
+#include "../../include/philos.h"
 
 void	print_inputs(t_inputs inputs)
 {

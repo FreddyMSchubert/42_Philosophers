@@ -6,13 +6,11 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:48:57 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/16 09:22:43 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:47:35 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../philos.h"
-
-#include <stdio.h> // for printf
+#include "../../include/philos.h"
 
 /*
 	@brief		Logs a message with a type in front and a new line in the end.
@@ -23,11 +21,11 @@ void	logger(char type, char *message)
 	if (VERBOSE == 0)
 		return ;
 	if (type == 'e')
-		printf("\033[31mERROR\033[0m: ");
+		printf("%sERROR%s: ", ANSI_COLOR_RED, ANSI_COLOR_RESET);
 	if (type == 'l')
-		printf("\033[33mLOGGER\033[0m: ");
+		printf("%sLOGGER%s: ", ANSI_COLOR_YELLOW, ANSI_COLOR_RESET);
 	if (type == 's')
-		printf("\033[32mSUCCESS\033[0m: ");
+		printf("%sSUCCESS%s: ", ANSI_COLOR_GREEN, ANSI_COLOR_RESET);
 	printf("%s\n", message);
 }
 

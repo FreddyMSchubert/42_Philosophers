@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   timing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: freddy <freddy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 10:20:58 by freddy            #+#    #+#             */
-/*   Updated: 2024/01/15 10:37:21 by freddy           ###   ########.fr       */
+/*   Updated: 2024/05/02 10:45:00 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// functions related to time tracking the program
+#include "../../include/philos.h"
 
-#include "sys/time.h"
+// functions related to time tracking the program
 
 unsigned long	get_ms_timestamp(void)
 {

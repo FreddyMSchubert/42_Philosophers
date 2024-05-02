@@ -6,16 +6,13 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:40:53 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/16 09:52:33 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:42:15 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // main
 
-#include "../philos.h"
-
-#include <stdio.h> // for printf
-#include <stdlib.h> // for free
+#include "../include/philos.h"
 
 // number_of_philosophers time_to_die time_to_eat time_to_sleep
 // [number_of_times_each_philosopher_must_eat]

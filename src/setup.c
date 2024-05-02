@@ -6,16 +6,13 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:18:44 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/16 09:53:10 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:42:12 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // setups mutexes and starts up philosopher threads
 
-#include "../philos.h"
-
-#include <stdlib.h> // for malloc
-#include <stdio.h> // for printf
+#include "../include/philos.h"
 
 static t_philo_inputs	*setup_philo_inputs(t_inputs	*inputs, \
 								unsigned long program_start_time, \
