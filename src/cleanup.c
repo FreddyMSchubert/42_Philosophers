@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 08:45:33 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 10:09:18 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:33:33 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	cleanup_mutexes(t_inputs *inputs)
 {
 	int		counter;
 
-	if (VERBOSE)
-		printf("Cleaning up mutexes\n");
 	counter = -1;
 	while (++counter < inputs->number_of_philosophers && inputs->forks != NULL)
 	{

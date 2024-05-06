@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 10:34:05 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:12:32 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 #include "./colors.h" // ANSI color codes collection
 
-#define VERBOSE true
-#define COLORFULOUTPUT true
-#define DETAILEDMESSAGES false
+#define VERBOSE 1
+#define COLORFULOUTPUT 1
+#define DETAILEDMESSAGES 1
 
 // --- STRUCTS
 

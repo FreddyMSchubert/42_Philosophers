@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:19:26 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/06 09:11:12 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:31:28 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ int	philo_sleep(t_philo_inputs *philo_inputs, unsigned long last_meal_time)
 	}
 	log_philo_action(philo_inputs, "is sleeping");
 	usleep(sleep_time);
+	if (DETAILEDMESSAGES)
+		log_philo_action(philo_inputs, "is done sleeping");
 	return (0);
 }

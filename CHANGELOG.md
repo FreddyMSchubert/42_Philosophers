@@ -1,5 +1,11 @@
 # Philosophers Changelog
 
+### v0.5.5 - 06.05.2024
+- added check for whether any other philo has died to the eating check
+- added step system to philo loop, now death and eat time are checked after every action
+- fixed philos using the end of their eating period as the last eat time - it should be the start
+- implemented fork switching mechanic - now every uneven philo takes the right, every even philo the left fork first. like this, deadlock chances are decreased
+
 ### v0.5.4 06.05.2024
 - fixed single philosopher spamming sleeping and thinking endlessly because he cant eat
 - added a detailed messages macro and made it print more stuff (putting forks down)
