@@ -1,5 +1,10 @@
 # Philosophers Changelog
 
+### v0.5.6 - 06.05.2024
+- mini fixes
+	- made philo loop log is thinking for the threads that dont start by eating, makes more sense
+	- made thread with only one philo not wait 200 ms at start
+
 ### v0.5.5 - 06.05.2024
 - added check for whether any other philo has died to the eating check
 - added step system to philo loop, now death and eat time are checked after every action

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:14 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/06 12:30:52 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:34:51 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	philo_eat(t_philo_inputs *philo_inputs, \
 	int		fork2;
 
 	if (philo_inputs->inputs.number_of_philosophers == 1)
-		return (*philo_inputs->death_flag = -1, -1);
+		return (usleep(philo_inputs->inputs.time_to_die * 1000), -1);
 	fork1 = philo_inputs->phid;
 	fork2 = philo_inputs->phid + 1;
 	if (philo_inputs->phid % 2 == 0)

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 12:31:00 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:36:59 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ void	*philo_loop(void *arg)
 	philo_inputs = (t_philo_inputs *)arg;
 	last_meal_time = get_ms_timestamp();
 	times_eaten = 0;
-	if (philo_inputs->phid % 2 == 0)
+	if (philo_inputs->phid % 2 == 1 && \
+							philo_inputs->inputs.number_of_philosophers != 1)
 	{
-		log_philo_action(philo_inputs, "is sleeping");
+		log_philo_action(philo_inputs, "is thinking");
 		usleep(philo_inputs->inputs.time_to_eat * 1000);
 	}
 	while (get_ms_timestamp() - last_meal_time < \
