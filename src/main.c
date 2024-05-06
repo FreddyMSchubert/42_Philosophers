@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:40:53 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/02 11:57:12 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 09:15:29 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
 int	main(int argc, char **argv)
 {
 	t_inputs		inputs;
-	unsigned long	program_start_time;
 	int				death_flag;
 	pthread_t		*threads;
 	int				counter;
 
 	if (manage_input(argc, argv, &inputs) == -1)
-		return (logger('e', "Input parameters invalid!"), -1);
+		return (logger(&inputs, 'e', "Input parameters invalid!"), -1);
 	print_inputs(inputs);
-	program_start_time = get_ms_timestamp();
+	inputs.program_start_time = get_ms_timestamp();
 	death_flag = 0;
 	if (VERBOSE)
-		printf("Program start time: %lu\n", program_start_time);
-	threads = setup_philos(&inputs, program_start_time, &death_flag);
+		printf("Program start time: %lu\n", inputs.program_start_time);
+	threads = setup_philos(&inputs, &death_flag);
 	if (!threads)
 		return (-1);
+	cleanup_mutexes(&inputs);
 	counter = -1;
 	while (++counter < inputs.number_of_philosophers)
 		pthread_join(threads[counter], NULL);

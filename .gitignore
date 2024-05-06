@@ -8,3 +8,5 @@ philo
 .DS_Store
 
 *.o
+
+LazyPhilosophersTester/

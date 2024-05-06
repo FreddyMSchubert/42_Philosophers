@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:58:27 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/02 10:42:16 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 08:32:32 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	manage_input(int argc, char **argv, t_inputs	*inputs)
 	{
 		inputs->times_a_philo_must_eat = -1;
 	}
-	logger('l', "Input parameters are valid!");
+	logger(inputs, 'l', "Input parameters are valid!");
 	return (0);
 }

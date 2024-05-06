@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/02 10:43:08 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 09:13:36 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*philo_loop(void *arg)
 	int				times_eaten;
 
 	philo_inputs = (t_philo_inputs *)arg;
-	last_meal_time = philo_inputs->program_start_time;
+	last_meal_time = philo_inputs->inputs.program_start_time;
 	times_eaten = 0;
 	if (philo_inputs->phid % 2 == 0)
 		philo_think(philo_inputs);
@@ -37,8 +37,7 @@ void	*philo_loop(void *arg)
 		philo_sleep(philo_inputs, last_meal_time);
 		philo_think(philo_inputs);
 	}
-	log_philo_action(get_ms_timestamp() - philo_inputs->program_start_time, \
-							philo_inputs->phid, "died");
+	log_philo_action(philo_inputs, "died");
 	*philo_inputs->death_flag = -1;
 	return (NULL);
 }

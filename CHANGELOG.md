@@ -9,7 +9,16 @@
 	- no numbers?
 	- negative handling currently bad
 
-### v0.5.2 - 02.05.2025
+### v0.5.3 - 06.05.2024
+- Added printing mutex to ensure we dont print things inside of each other
+- made makefile put objs in their own directory
+- moved some stuff around in the structs
+- added solid cleanup function
+- better forks mutex array handling
+
+---
+
+### v0.5.2 - 02.05.2024
 - multiple completely inconsequential changes
 	- some of them even went so far as to change the code in any way whatsoever
 - added some helpful comments where necessary
