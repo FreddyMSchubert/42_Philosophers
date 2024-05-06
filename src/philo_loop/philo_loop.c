@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 09:13:36 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:38:29 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	*philo_loop(void *arg)
 	{
 		if (*philo_inputs->death_flag != 0)
 			return (NULL);
-		philo_eat(philo_inputs, &last_meal_time, &times_eaten);
+		if (philo_eat(philo_inputs, &last_meal_time, &times_eaten) != 0)
+			break ;
 		if (times_eaten >= philo_inputs->inputs.times_a_philo_must_eat && \
 								philo_inputs->inputs.times_a_philo_must_eat > 0)
 			return (NULL);

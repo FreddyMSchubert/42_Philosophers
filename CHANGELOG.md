@@ -1,13 +1,9 @@
 # Philosophers Changelog
 
-## currently unfreed mallocs
-- forks
-- philo inputs
-
-## todo
-- fix input parsing
-	- no numbers?
-	- negative handling currently bad
+### v0.5.4 06.05.2024
+- fixed single philosopher spamming sleeping and thinking endlessly because he cant eat
+- added a detailed messages macro and made it print more stuff (putting forks down)
+- fixed eat action not checking whether dead after locking a mutex, which could theoretically take quite some time.
 
 ### v0.5.3 - 06.05.2024
 - Added printing mutex to ensure we dont print things inside of each other

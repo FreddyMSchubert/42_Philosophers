@@ -6,12 +6,9 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 09:30:33 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:34:05 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#define VERBOSE 1
-#define COLORFULOUTPUT 1
 
 // --- INCLUDES
 #include <unistd.h>
@@ -19,8 +16,13 @@
 #include <stdlib.h>
 #include <pthread.h>  // threads, duh
 #include <sys/time.h> // gettimeofday
+#include <stdbool.h>  // bool type
 
 #include "./colors.h" // ANSI color codes collection
+
+#define VERBOSE true
+#define COLORFULOUTPUT true
+#define DETAILEDMESSAGES false
 
 // --- STRUCTS
 

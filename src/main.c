@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:40:53 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 09:15:29 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/06 10:09:28 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	main(int argc, char **argv)
 	threads = setup_philos(&inputs, &death_flag);
 	if (!threads)
 		return (-1);
-	cleanup_mutexes(&inputs);
 	counter = -1;
 	while (++counter < inputs.number_of_philosophers)
 		pthread_join(threads[counter], NULL);
 	free (threads);
+	cleanup_mutexes(&inputs);
 	return (0);
 }
