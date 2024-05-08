@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 12:12:32 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/08 08:11:42 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_philo_inputs
 	int					phid;
 	int					*death_flag;
 	t_inputs			inputs;
+	unsigned long		expected_eat_time;
 }				t_philo_inputs;
 
 // --- INPUT
@@ -58,9 +59,13 @@ pthread_t		*setup_philos(t_inputs	*inputs, int *death_flag);
 // --- PHILO ACTIONS
 
 void			*philo_loop(void *arg);
+
+int				determine_first_philo_to_eat(t_philo_inputs *philo_inputs);
+
 int				philo_eat(t_philo_inputs *philo_inputs, \
 							unsigned long *last_meal_time, int *times_eaten);
-int				philo_think(t_philo_inputs *philo_inputs);
+int				philo_think(t_philo_inputs *philo_inputs, \
+							unsigned long last_meal_time);
 int				philo_sleep(t_philo_inputs *philo_inputs, \
 							unsigned long last_meal_time);
 
@@ -78,3 +83,4 @@ void			logger(t_inputs *inputs, char type, char *message);
 void			log_philo_action(t_philo_inputs *in, char *msg);
 // TIME
 unsigned long	get_ms_timestamp(void);
+void			ft_sleep(unsigned long ms);

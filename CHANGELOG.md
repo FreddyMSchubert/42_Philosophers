@@ -1,5 +1,15 @@
 # Philosophers Changelog
 
+### v0.5.7 - 07.05.2024
+- fixed sleep using milliseconds and microseconds inconsistently.
+- added determine_first_philo_to_eat function, which ensures the first and last philo dont go on each others nerves.
+- created expected eat time system
+	- in think, this eat time gets calculated.
+	- in eat, we wont start eating until roughly that time.
+	- also, the philos get staggered differently at the start depending on how many there are in total
+
+---
+
 ### v0.5.6 - 06.05.2024
 - mini fixes
 	- made philo loop log is thinking for the threads that dont start by eating, makes more sense

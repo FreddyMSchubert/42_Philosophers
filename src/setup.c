@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:18:44 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 09:30:57 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/07 10:31:18 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_philo_inputs	*setup_philo_inputs(t_inputs	*inputs, \
 		philo_inputs[i].phid = i;
 		philo_inputs[i].inputs = *inputs;
 		philo_inputs[i].death_flag = death_flag;
+		philo_inputs[i].expected_eat_time = 0;
 	}
 	return (philo_inputs);
 }

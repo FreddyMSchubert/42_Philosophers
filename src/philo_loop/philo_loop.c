@@ -6,13 +6,43 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 13:36:59 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/08 09:03:49 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/philos.h"
 
 // Main loop for the philosopher threads
+
+int	determine_first_philo_to_eat(t_philo_inputs *philo_inputs)
+{
+	if (philo_inputs->inputs.number_of_philosophers % 2 == 0)
+	{
+		if (philo_inputs->phid % 2 == 0)
+		{
+			log_philo_action(philo_inputs, "is thinking");
+			philo_inputs->expected_eat_time = get_ms_timestamp() + \
+								philo_inputs->inputs.time_to_eat;
+			ft_sleep(philo_inputs->inputs.time_to_eat / 5 * 4);
+		}
+		else
+			philo_inputs->expected_eat_time = get_ms_timestamp();
+	}
+	else
+	{
+		if (philo_inputs->phid % 3 > 0)
+		{
+			log_philo_action(philo_inputs, "is thinking");
+			philo_inputs->expected_eat_time = get_ms_timestamp() + \
+								philo_inputs->inputs.time_to_eat;
+			ft_sleep(philo_inputs->inputs.time_to_eat / 5 * 4 + philo_inputs->phid % 3 * philo_inputs->inputs.time_to_eat);
+		}
+		else
+			philo_inputs->expected_eat_time = get_ms_timestamp();
+	}
+
+	return (philo_inputs->inputs.number_of_philosophers % 2);
+}
 
 void	*philo_loop(void *arg)
 {
@@ -25,12 +55,7 @@ void	*philo_loop(void *arg)
 	philo_inputs = (t_philo_inputs *)arg;
 	last_meal_time = get_ms_timestamp();
 	times_eaten = 0;
-	if (philo_inputs->phid % 2 == 1 && \
-							philo_inputs->inputs.number_of_philosophers != 1)
-	{
-		log_philo_action(philo_inputs, "is thinking");
-		usleep(philo_inputs->inputs.time_to_eat * 1000);
-	}
+	determine_first_philo_to_eat(philo_inputs);
 	while (get_ms_timestamp() - last_meal_time < \
 							(unsigned long)philo_inputs->inputs.time_to_die)
 	{
@@ -47,7 +72,7 @@ void	*philo_loop(void *arg)
 		else if (current_step % 3 == 1)
 			philo_sleep(philo_inputs, last_meal_time);
 		else if (current_step % 3 == 2)
-			philo_think(philo_inputs);
+			philo_think(philo_inputs, last_meal_time);
 		current_step++;
 		if (current_step >= 3)
 			current_step = 0;
