@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 10:20:58 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/08 08:11:27 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/10 09:54:28 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ void	ft_sleep(unsigned long ms)
 	start_time = get_ms_timestamp();
 	while (get_ms_timestamp() - start_time < ms)
 		usleep(100);
+}
+
+int	get_eat_start_softness(t_philo_inputs *philo_inputs)
+{
+	int	shortest_action_time;
+
+	shortest_action_time = philo_inputs->inputs.time_to_eat;
+	if (philo_inputs->inputs.time_to_sleep < shortest_action_time)
+		shortest_action_time = philo_inputs->inputs.time_to_sleep;
+	return (shortest_action_time / 2);
 }

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:07 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/06 12:21:54 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/10 09:48:32 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,11 @@ void	log_philo_action(t_philo_inputs *in, char *msg)
 	else
 		printf("%lu %d %s\n", time, in->phid, msg);
 	pthread_mutex_unlock(in->inputs.printing_mutex);
+}
+
+void	log_detailed_philo_action(t_philo_inputs *in, char *msg)
+{
+	if (DETAILEDMESSAGES == 0)
+		return ;
+	log_philo_action(in, msg);
 }

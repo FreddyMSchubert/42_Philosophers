@@ -1,14 +1,19 @@
 # Philosophers Changelog
 
-### v0.5.7 - 07.05.2024
+### v0.6.1 - 10.05.2024
+- norminettification
+	- create log_detailed_philo_action function, more compact
+	- complete restructuring of determine_first_philo_to_eat, still works
+	- restructuring of philo_loop, moved logic inside of while loop to execute_philo_action
+	- general refactorings
+
+### v0.6.0 - 07.05.2024
 - fixed sleep using milliseconds and microseconds inconsistently.
 - added determine_first_philo_to_eat function, which ensures the first and last philo dont go on each others nerves.
 - created expected eat time system
 	- in think, this eat time gets calculated.
 	- in eat, we wont start eating until roughly that time.
 	- also, the philos get staggered differently at the start depending on how many there are in total
-
----
 
 ### v0.5.6 - 06.05.2024
 - mini fixes
@@ -33,8 +38,6 @@
 - added solid cleanup function
 - better forks mutex array handling
 
----
-
 ### v0.5.2 - 02.05.2024
 - multiple completely inconsequential changes
 	- some of them even went so far as to change the code in any way whatsoever
@@ -48,8 +51,6 @@
 - moved all imports to header for clarity & a better overview
 - for some reason, there was a compilation issue - easy to fix, but makes me anxious, i dont remember how i left this code
 
----
-
 ## v0.5.0 - 16.01.2024
 - before having philo fall asleep, program now checks whether he will starve during sleep. if so, only wait usleep that long and accurately time the death message
 
@@ -61,22 +62,16 @@
 - norminette improvements, code cleanup
 - renamed struct property number_of_times_each_philosopher_must_eat to something less lengthy
 
----
-
 ## v0.3.0 - 15.01.2024
 - added timing.c, which gets milliseconds since Jan 1, 1970
 - added eating mutex functionality
 - created philo loop, currently with dysfunctional exit
-
----
 
 ## v0.2.0 - 11.01.2024
 - created setup function that inits mutexes and starts philo threads
 - created simple thread function that currently just prints some thread input data
 - moved printing function into own file & general cleanup
 - Added epic table visualization
-
----
 
 ## v0.1.0 - 09.01.2024
 - Added makefile, header, subject, folder structure

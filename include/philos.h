@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/08 08:11:42 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/10 09:54:51 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void			print_inputs(t_inputs inputs);
 void			print_philo_input_data(t_philo_inputs *philo_input);
 void			logger(t_inputs *inputs, char type, char *message);
 void			log_philo_action(t_philo_inputs *in, char *msg);
+void			log_detailed_philo_action(t_philo_inputs *in, char *msg);
 // TIME
 unsigned long	get_ms_timestamp(void);
 void			ft_sleep(unsigned long ms);
+int				get_eat_start_softness(t_philo_inputs *philo_inputs);
