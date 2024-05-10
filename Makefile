@@ -4,7 +4,7 @@ SRC = $(shell find ./src -name "*.c")
 OBJ = $(patsubst %.c,obj/%.o,$(SRC))
 
 CFLAGS = -Wall -Werror -Wextra
-DEBUG = -g -fsanitize=address
+DEBUG = -g #-fsanitize=address
 
 obj/%.o: %.c
 	@mkdir -p $(@D)

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/10 10:06:43 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:10:26 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,30 @@
 
 // Main loop for the philosopher threads
 
+static void	start_stg(t_philo_inputs *philo_inputs, unsigned int time)
+{
+	log_philo_action(philo_inputs, "is thinking");
+	philo_inputs->expected_eat_time = get_ms_timestamp() + \
+											philo_inputs->inputs.time_to_eat;
+	ft_sleep(time);
+}
+
 int	determine_first_philo_to_eat(t_philo_inputs *philo_inputs)
 {
-	int	time_to_sleep;
-
-	time_to_sleep = 0;
-	if (philo_inputs->inputs.number_of_philosophers % 2 == 0 && \
-					philo_inputs->phid % 2 == 0)
-		time_to_sleep = philo_inputs->inputs.time_to_eat / 5 * 4;
-	else if (philo_inputs->phid % 3 > 0)
-		time_to_sleep = philo_inputs->inputs.time_to_eat / 5 * 4 + \
-				philo_inputs->phid % 3 * philo_inputs->inputs.time_to_eat;
-	else
-		philo_inputs->expected_eat_time = get_ms_timestamp();
-	if (time_to_sleep > 0)
+	if (philo_inputs->inputs.number_of_philosophers % 2 == 0)
 	{
-		log_philo_action(philo_inputs, "is thinking");
-		philo_inputs->expected_eat_time = get_ms_timestamp() + \
-							philo_inputs->inputs.time_to_eat;
-		ft_sleep(time_to_sleep);
+		if (philo_inputs->phid % 2 == 0)
+			start_stg(philo_inputs, philo_inputs->inputs.time_to_eat / 5 * 4);
+		else
+			philo_inputs->expected_eat_time = get_ms_timestamp();
+	}
+	else
+	{
+		if (philo_inputs->phid % 3 > 0)
+			start_stg(philo_inputs, philo_inputs->inputs.time_to_eat / 5 * 4 + \
+					philo_inputs->phid % 3 * philo_inputs->inputs.time_to_eat);
+		else
+			philo_inputs->expected_eat_time = get_ms_timestamp();
 	}
 	return (philo_inputs->inputs.number_of_philosophers % 2);
 }

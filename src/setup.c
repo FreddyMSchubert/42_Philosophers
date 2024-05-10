@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:18:44 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/07 10:31:18 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:30:36 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ pthread_t	*setup_philos(t_inputs	*inputs, int *death_flag)
 	i = -1;
 	while (++i < inputs->number_of_philosophers)
 		pthread_create(&threads[i], NULL, philo_loop, &philo_inputs[i]);
+	inputs->philo_inputs = philo_inputs;
 	return (threads);
 }

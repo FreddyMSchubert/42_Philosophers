@@ -1,5 +1,10 @@
 # Philosophers Changelog
 
+### v0.6.2 - 10.05.2024
+- fixed logic issue in previous norminettification
+- clearer input error messages
+- freed everything that was dynamically allocated anywhere, destroyed all the mutexes
+
 ### v0.6.1 - 10.05.2024
 - norminettification
 	- create log_detailed_philo_action function, more compact

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/10 09:54:51 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/10 11:32:49 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,24 @@
 // program command line inputs
 typedef struct s_inputs
 {
-	int					number_of_philosophers;
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
-	int					times_a_philo_must_eat;
-	unsigned long		program_start_time;
-	pthread_mutex_t		**forks;
-	pthread_mutex_t		*printing_mutex;
+	int						number_of_philosophers;
+	int						time_to_die;
+	int						time_to_eat;
+	int						time_to_sleep;
+	int						times_a_philo_must_eat;
+	unsigned long			program_start_time;
+	pthread_mutex_t			**forks;
+	pthread_mutex_t			*printing_mutex;
+	struct s_philo_inputs	*philo_inputs;
 }				t_inputs;
 
 // data the philo threads get as input
 typedef struct s_philo_inputs
 {
-	int					phid;
-	int					*death_flag;
-	t_inputs			inputs;
-	unsigned long		expected_eat_time;
+	int						phid;
+	int						*death_flag;
+	t_inputs				inputs;
+	unsigned long			expected_eat_time;
 }				t_philo_inputs;
 
 // --- INPUT
@@ -71,7 +72,7 @@ int				philo_sleep(t_philo_inputs *philo_inputs, \
 
 // --- CLEANUP
 
-void			cleanup_mutexes(t_inputs *inputs);
+void			cleanup(t_inputs *inputs, pthread_t *threads);
 
 // --- UTILS
 
