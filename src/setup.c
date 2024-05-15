@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:18:44 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 10:02:26 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:49:03 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	allocate_mutexes(t_inputs *inputs)
 
 	i = -1;
 	while (++i < inputs->number_of_philos)
-		if (allocate_and_init_mutex(&inputs->forks[i]) != 0)
+		if (allocate_and_init_mutex(&inputs->fork_mutexes[i]) != 0)
 			return (-1);
 	if (allocate_and_init_mutex(&inputs->printing_mutex) != 0)
 		return (-1);
@@ -72,11 +72,15 @@ pthread_t	*setup_philos(t_inputs	*inputs)
 	pthread_t			*threads;
 	t_philo_inputs		*philo_inputs;
 
-	inputs->forks = malloc(sizeof(pthread_mutex_t *) * \
+	inputs->forks = malloc(sizeof(bool) * inputs->number_of_philos);
+	inputs->fork_mutexes = malloc(sizeof(pthread_mutex_t *) * \
 									inputs->number_of_philos);
 	threads = malloc(sizeof(pthread_t) * inputs->number_of_philos);
-	if (!inputs->forks || !threads)
-		return (printf("Fork mallocation failed.\n"), NULL);
+	if (!inputs->fork_mutexes || !threads || !inputs->forks)
+		return (printf("Fork / thread Mallocation failed.\n"), NULL);
+	i = -1;
+	while (++i < inputs->number_of_philos)
+		inputs->forks[i] = false;
 	if (allocate_mutexes(inputs) != 0)
 		return (printf("Mutex allocation failed.\n"), NULL);
 	philo_inputs = setup_philo_inputs(inputs);

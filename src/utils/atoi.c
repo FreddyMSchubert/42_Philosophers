@@ -3,25 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: freddy <freddy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:46:23 by fschuber          #+#    #+#             */
-/*   Updated: 2024/01/15 10:17:30 by freddy           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:05:29 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-static int	ft_isspace(const char s)
-{
-	if (s == ' ' || s == '\t' || s == '\n' || s == '\v')
-		return (1);
-	if (s == '\f' || s == '\r')
-		return (1);
-	return (0);
-}
 
 static int	ft_isdigit(int c)
 {
 	return (c >= '0' && c <= '9');
+}
+
+static int	check_minus(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (-1);
+		i++;
+	}
+	return (0);
 }
 
 int	ft_atoi(const char *s)
@@ -33,8 +38,8 @@ int	ft_atoi(const char *s)
 	i = 0;
 	sign = 1;
 	value = 0;
-	while (ft_isspace(s[i]))
-		i++;
+	if (check_minus((char *)s) != 0)
+		return (-1);
 	if (!ft_isdigit(s[i]))
 	{
 		if (s[i] == '-')

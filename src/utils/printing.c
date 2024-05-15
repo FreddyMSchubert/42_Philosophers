@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:07 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:55:37 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:02:25 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // prints before threading, thus no need for mutex
 void	print_inputs(t_inputs inputs)
 {
-	if (LOG_INPUTS != 1)
+	if (VERBOSE != 1)
 		return ;
 	printf("Number of Philosophers: %d\n", inputs.number_of_philos);
 	printf("Time to Die: %d\n", inputs.time_to_die);
@@ -35,8 +35,6 @@ void	print_inputs(t_inputs inputs)
 */
 void	logger(t_inputs *inputs, char type, char *msg)
 {
-	if (LOG_INPUTS != 1)
-		return ;
 	if (inputs->printing_mutex)
 		pthread_mutex_lock(inputs->printing_mutex);
 	if (type == 'e')

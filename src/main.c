@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:40:53 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 10:02:19 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:06:32 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	check_input_validity(t_inputs *inputs, int argc, char **argv)
 		logger(inputs, 'e', "Times a philo must eat must be positive!");
 	else if (ret_val != 0)
 		logger(inputs, 'e', "Input parameters invalid!");
-	if (ret_val == 0 && LOG_INPUTS == 1)
+	if (ret_val == 0 && VERBOSE == 1)
 	{
 		logger(inputs, 'l', "Input parameters are valid!");
 		print_inputs(*inputs);

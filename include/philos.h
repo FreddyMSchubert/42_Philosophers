@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 10:02:02 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:02:25 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "./colors.h" // ANSI color codes collection
 
-#define LOG_INPUTS 0
+#define VERBOSE 0
 #define COLORFULOUTPUT 0
 #define EMOJIS 0
 
@@ -37,10 +37,12 @@ typedef struct s_inputs
 	unsigned long			program_start_time;
 	int						*death_flag;
 	pthread_mutex_t			*death_flag_mutex;
-	pthread_mutex_t			**forks;
+	bool					*forks;
+	pthread_mutex_t			**fork_mutexes;
 	pthread_mutex_t			*printing_mutex;
 	struct s_philo_inputs	*philo_inputs;
 }				t_inputs;
+// the forks are false when unused, and true when in use
 
 // data the philo threads get as input
 typedef struct s_philo_inputs

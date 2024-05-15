@@ -1,5 +1,11 @@
 # Philosophers Changelog
 
+### v0.6.8 - 15.05.2024
+- made the fork mutexes protect a list of booleans, not be the forks themselves
+- moved death.c to philo_loop folder, makes more sense
+- stopped errors from not logging with VERBOSE (renamed it back, too. it also changed the changelog, which may or may not be pretty confusing)
+- reworked atoi.c, ft_isspace is unnecessary, and added a check for if theres anything at all that isnt a number. if so, throw error
+
 ## v0.6.7 - 15.05.2024
 - valgrind
 	- fixed death flag mutex not being cleaned up in cleanup function
@@ -14,8 +20,8 @@
 ### v0.6.4 - 15.05.2024
 - removed detailed logging functionality
 - removed print_philo_input_data, its unused
-- renamed VERBOSE to LOG_INPUTS, its clearer and doesnt do anything else anyways
-	- i thought that then i set log_inputs to 0 and nothing logged. 
+- renamed VERBOSE to VERBOSE, its clearer and doesnt do anything else anyways
+	- i thought that then i set VERBOSE to 0 and nothing logged. 
 - norminettification, again, thats done now
 - fixed logic flow issue preventing the program to start in input validation when log_error wasnt on
 - currently we segfault but ill fix that later
