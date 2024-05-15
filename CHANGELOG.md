@@ -1,5 +1,8 @@
 # Philosophers Changelog
 
+### v0.6.11 - 15.05.2024
+- fixed a really dumb issue with the eat time start waiting in eat - it waited for 100 times the intended amount, causing issues. a thousandth second isnt quite a tenth second
+
 ### v0.6.10 - 15.05.2024
 - fixed fork access data race in eat. f u, copilot!
 

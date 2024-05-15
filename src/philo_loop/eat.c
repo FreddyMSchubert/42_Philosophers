@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:14 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/15 12:39:58 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:05:42 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static bool	wait_until_eat_time(t_philo_inputs *philo_inputs, \
 	{
 		if (dead(philo_inputs, last_meal, NULL))
 			return (false);
-		ft_sleep(100, philo_inputs, *last_meal);
+		ft_sleep(1, philo_inputs, *last_meal);
 		current_time = get_ms_timestamp();
 	}
 	return (true);
