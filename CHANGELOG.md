@@ -1,5 +1,16 @@
 # Philosophers Changelog
 
+## todo
+- clean up philo inputs. inputs contains constants and shared resources, philo inputs are non-shared.
+	- rename philo inputs to phinput
+- remove detailed logging functionality, its unnecessary at this point
+
+### v0.6.3 - 15.05.2024
+- death flag mutex with getters and setters so philos dont die after each other
+- dedicated die method which executes both death flag getter and setter for data race safety
+- added emojis to philo logging, togglable with emoji macro in header
+- all tests still passed
+
 ### v0.6.2 - 10.05.2024
 - fixed logic issue in previous norminettification
 - clearer input error messages

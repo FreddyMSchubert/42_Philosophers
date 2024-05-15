@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:18:44 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/10 11:30:36 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:50:48 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	allocate_and_init_mutex(pthread_mutex_t **mutex_ptr)
 }
 
 static t_philo_inputs	*setup_philo_inputs(t_inputs	*inputs, \
-								int *death_flag)
+							int *death_flag, pthread_mutex_t *death_flag_mutex)
 {
 	int					i;
 	t_philo_inputs		*philo_inputs;
@@ -49,6 +49,7 @@ static t_philo_inputs	*setup_philo_inputs(t_inputs	*inputs, \
 		philo_inputs[i].inputs = *inputs;
 		philo_inputs[i].death_flag = death_flag;
 		philo_inputs[i].expected_eat_time = 0;
+		philo_inputs[i].death_flag_mutex = death_flag_mutex;
 	}
 	return (philo_inputs);
 }
@@ -57,6 +58,7 @@ pthread_t	*setup_philos(t_inputs	*inputs, int *death_flag)
 {
 	int					i;
 	pthread_mutex_t		**forks;
+	pthread_mutex_t		*death_flag_mutex;
 	pthread_t			*threads;
 	t_philo_inputs		*philo_inputs;
 
@@ -71,8 +73,10 @@ pthread_t	*setup_philos(t_inputs	*inputs, int *death_flag)
 			return (printf("Mutex allocation failed.\n"), NULL);
 	if (allocate_and_init_mutex(&inputs->printing_mutex) != 0)
 		return (printf("Printing mutex allocation failed.\n"), NULL);
+	if (allocate_and_init_mutex(&death_flag_mutex) != 0)
+		return (printf("Death flag mutex allocation failed.\n"), NULL);
 	inputs->forks = forks;
-	philo_inputs = setup_philo_inputs(inputs, death_flag);
+	philo_inputs = setup_philo_inputs(inputs, death_flag, death_flag_mutex);
 	if (!philo_inputs)
 		return (printf("Philo input setup failed.\n"), NULL);
 	i = -1;

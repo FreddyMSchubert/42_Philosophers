@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:14 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/10 09:55:23 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 08:39:33 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static bool	dead(t_philo_inputs *philo_inputs, \
 	if (get_ms_timestamp() - *last_meal_time >= \
 			(unsigned long)philo_inputs->inputs.time_to_die)
 	{
-		*philo_inputs->death_flag = -1;
+		die(philo_inputs);
 		if (fork != NULL)
 			pthread_mutex_unlock(fork);
 		return (true);
 	}
-	if (*philo_inputs->death_flag != 0)
+	if (get_death_flag(philo_inputs) != 0)
 	{
 		if (fork != NULL)
 			pthread_mutex_unlock(fork);
@@ -43,7 +43,7 @@ static bool	wait_until_eat_time(t_philo_inputs *philo_inputs, \
 	{
 		if (dead(philo_inputs, last_meal_time, NULL))
 			return (false);
-		ft_sleep(100);
+		ft_sleep(100, philo_inputs);
 		current_time = get_ms_timestamp();
 	}
 	return (true);
@@ -71,9 +71,9 @@ static int	determine_fork_order(t_philo_inputs *philo_inputs, \
 static void	eat(t_philo_inputs *philo_inputs, \
 				unsigned long *last_meal_time, int *times_eaten)
 {
-	log_philo_action(philo_inputs, "is eating");
+	log_philo_action(philo_inputs, "is eating", "🍝");
 	*last_meal_time = get_ms_timestamp();
-	ft_sleep(philo_inputs->inputs.time_to_eat);
+	ft_sleep(philo_inputs->inputs.time_to_eat, philo_inputs);
 	*times_eaten += 1;
 }
 
@@ -84,23 +84,23 @@ int	philo_eat(t_philo_inputs *philo_inputs, \
 	int		fork2;
 
 	if (philo_inputs->inputs.number_of_philosophers == 1)
-		return (ft_sleep(philo_inputs->inputs.time_to_die), -1);
+		return (ft_sleep(philo_inputs->inputs.time_to_die, philo_inputs), -1);
 	if (wait_until_eat_time(philo_inputs, last_meal_time) == false)
 		return (-1);
 	if (determine_fork_order(philo_inputs, &fork1, &fork2) == -1)
 		return (-1);
 	pthread_mutex_lock(philo_inputs->inputs.forks[fork1]);
-	log_philo_action(philo_inputs, "has taken a fork");
 	if (dead(philo_inputs, last_meal_time, philo_inputs->inputs.forks[fork1]))
 		return (-1);
+	log_philo_action(philo_inputs, "has taken a fork", "🍴");
 	pthread_mutex_lock(philo_inputs->inputs.forks[fork2]);
-	log_philo_action(philo_inputs, "has taken a fork");
 	if (dead(philo_inputs, last_meal_time, philo_inputs->inputs.forks[fork1]))
 		return (-1);
+	log_philo_action(philo_inputs, "has taken a fork", "🍴");
 	eat(philo_inputs, last_meal_time, times_eaten);
 	pthread_mutex_unlock(philo_inputs->inputs.forks[fork1]);
-	log_detailed_philo_action(philo_inputs, "has put down a fork");
+	log_detailed_philo_action(philo_inputs, "has put down a fork", "🍴");
 	pthread_mutex_unlock(philo_inputs->inputs.forks[fork2]);
-	log_detailed_philo_action(philo_inputs, "has put down a fork");
+	log_detailed_philo_action(philo_inputs, "has put down a fork", "🍴");
 	return (0);
 }

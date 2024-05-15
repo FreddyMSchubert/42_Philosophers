@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/10 11:10:26 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 08:37:47 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 static void	start_stg(t_philo_inputs *philo_inputs, unsigned int time)
 {
-	log_philo_action(philo_inputs, "is thinking");
+	log_philo_action(philo_inputs, "is thinking", "💭");
 	philo_inputs->expected_eat_time = get_ms_timestamp() + \
 											philo_inputs->inputs.time_to_eat;
-	ft_sleep(time);
+	ft_sleep(time, philo_inputs);
 }
 
 int	determine_first_philo_to_eat(t_philo_inputs *philo_inputs)
@@ -47,7 +47,7 @@ static int	execute_philo_action(t_philo_inputs *philo_inputs, \
 				unsigned long *last_meal_time, int *times_eaten, \
 				int *current_step)
 {
-	if (*philo_inputs->death_flag != 0)
+	if (get_death_flag(philo_inputs) != 0)
 		return (2);
 	if (*current_step % 3 == 0)
 	{
@@ -89,7 +89,7 @@ void	*philo_loop(void *arg)
 		else if (ret_val == 2)
 			return (NULL);
 	}
-	log_philo_action(philo_inputs, "died");
-	*philo_inputs->death_flag = -1;
+	// printf("death flag: %d\n", get_death_flag(philo_inputs));
+	die(philo_inputs);
 	return (NULL);
 }

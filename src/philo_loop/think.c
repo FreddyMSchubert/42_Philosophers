@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:22:43 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/10 09:45:47 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 08:37:54 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	calculate_expected_eat_time(t_philo_inputs *philo_inputs, \
 
 int	philo_think(t_philo_inputs *philo_inputs, unsigned long last_meal_time)
 {
-	log_philo_action(philo_inputs, "is thinking");
+	log_philo_action(philo_inputs, "is thinking", "💭");
 	calculate_expected_eat_time(philo_inputs, last_meal_time);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 10:20:58 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/10 09:54:28 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 08:29:24 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ unsigned long	get_ms_timestamp(void)
 	return (time_in_ms);
 }
 
-void	ft_sleep(unsigned long ms)
+void	ft_sleep(unsigned long ms, t_philo_inputs *philo_inputs)
 {
 	unsigned long	start_time;
 
 	start_time = get_ms_timestamp();
 	while (get_ms_timestamp() - start_time < ms)
+	{
 		usleep(100);
+		if (get_death_flag(philo_inputs) != 0)
+			return ;
+	}
 }
 
 int	get_eat_start_softness(t_philo_inputs *philo_inputs)

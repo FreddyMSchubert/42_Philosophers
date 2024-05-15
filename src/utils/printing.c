@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:07 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/10 11:40:05 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 08:38:53 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	logger(t_inputs *inputs, char type, char *msg)
 		pthread_mutex_unlock(inputs->printing_mutex);
 }
 
-void	log_philo_action(t_philo_inputs *in, char *msg)
+void	log_philo_action(t_philo_inputs *in, char *msg, char *emoji)
 {
 	int				philo_color;
 	unsigned long	time;
@@ -67,16 +67,21 @@ void	log_philo_action(t_philo_inputs *in, char *msg)
 	time = get_ms_timestamp() - in->inputs.program_start_time;
 	philo_color = (in->phid % 6) + 31;
 	pthread_mutex_lock(in->inputs.printing_mutex);
-	if (COLORFULOUTPUT == 1)
+	if (COLORFULOUTPUT == 1 && EMOJIS == 0)
 		printf("%lu\t\033[%dm%d %s\033[0m\n", time, philo_color, in->phid, msg);
+	else if (COLORFULOUTPUT == 1 && EMOJIS == 1)
+		printf("%lu\t\033[%dm%d %s %s\033[0m\n", time, philo_color, \
+							in->phid, emoji, msg);
+	else if (COLORFULOUTPUT == 0 && EMOJIS == 1)
+		printf("%lu %d %s %s\n", time, in->phid, emoji, msg);
 	else
 		printf("%lu %d %s\n", time, in->phid, msg);
 	pthread_mutex_unlock(in->inputs.printing_mutex);
 }
 
-void	log_detailed_philo_action(t_philo_inputs *in, char *msg)
+void	log_detailed_philo_action(t_philo_inputs *in, char *msg, char *emoji)
 {
 	if (DETAILEDMESSAGES == 0)
 		return ;
-	log_philo_action(in, msg);
+	log_philo_action(in, msg, emoji);
 }
