@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:54:14 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:02:02 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_inputs
 	int						time_to_sleep;
 	int						times_a_philo_must_eat;
 	unsigned long			program_start_time;
-	int						death_flag;
+	int						*death_flag;
 	pthread_mutex_t			*death_flag_mutex;
 	pthread_mutex_t			**forks;
 	pthread_mutex_t			*printing_mutex;

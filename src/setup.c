@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:18:44 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:53:54 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:02:26 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ pthread_t	*setup_philos(t_inputs	*inputs)
 	pthread_t			*threads;
 	t_philo_inputs		*philo_inputs;
 
-	inputs->death_flag = 0;
 	inputs->forks = malloc(sizeof(pthread_mutex_t *) * \
 									inputs->number_of_philos);
 	threads = malloc(sizeof(pthread_t) * inputs->number_of_philos);

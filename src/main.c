@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:40:53 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:52:30 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:02:19 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,12 @@ int	main(int argc, char **argv)
 {
 	t_inputs		inputs;
 	pthread_t		*threads;
+	int				death_flag;
 
 	check_input_validity(&inputs, argc, argv);
 	inputs.program_start_time = get_ms_timestamp();
+	death_flag = 0;
+	inputs.death_flag = &death_flag;
 	threads = setup_philos(&inputs);
 	if (!threads)
 		return (cleanup(&inputs, NULL), -1);

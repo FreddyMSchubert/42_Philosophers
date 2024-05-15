@@ -1,5 +1,8 @@
 # Philosophers Changelog
 
+### v0.6.6 - 15.05.2024
+- i broke the death flag thing - now everybody dies without checking the others. FIXED! quick push, should have checked that before pushing the last commit
+
 ### v0.6.5 - 15.05.2024
 - moved all shared resources from philo inputs to inputs, that was the death flag & its mutex
 
