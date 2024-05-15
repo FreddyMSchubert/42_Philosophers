@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:14 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/15 08:39:33 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:20:40 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	philo_eat(t_philo_inputs *philo_inputs, \
 	int		fork1;
 	int		fork2;
 
+	printf("i am eating\n");
 	if (philo_inputs->inputs.number_of_philosophers == 1)
 		return (ft_sleep(philo_inputs->inputs.time_to_die, philo_inputs), -1);
 	if (wait_until_eat_time(philo_inputs, last_meal_time) == false)
@@ -99,8 +100,6 @@ int	philo_eat(t_philo_inputs *philo_inputs, \
 	log_philo_action(philo_inputs, "has taken a fork", "🍴");
 	eat(philo_inputs, last_meal_time, times_eaten);
 	pthread_mutex_unlock(philo_inputs->inputs.forks[fork1]);
-	log_detailed_philo_action(philo_inputs, "has put down a fork", "🍴");
 	pthread_mutex_unlock(philo_inputs->inputs.forks[fork2]);
-	log_detailed_philo_action(philo_inputs, "has put down a fork", "🍴");
 	return (0);
 }

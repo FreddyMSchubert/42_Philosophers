@@ -3,7 +3,15 @@
 ## todo
 - clean up philo inputs. inputs contains constants and shared resources, philo inputs are non-shared.
 	- rename philo inputs to phinput
-- remove detailed logging functionality, its unnecessary at this point
+
+### v0.6.4 - 15.05.2024
+- removed detailed logging functionality
+- removed print_philo_input_data, its unused
+- renamed VERBOSE to LOG_INPUTS, its clearer and doesnt do anything else anyways
+	- i thought that then i set log_inputs to 0 and nothing logged. 
+- norminettification, again, thats done now
+- fixed logic flow issue preventing the program to start in input validation when log_error wasnt on
+- currently we segfault but ill fix that later
 
 ### v0.6.3 - 15.05.2024
 - death flag mutex with getters and setters so philos dont die after each other

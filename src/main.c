@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:40:53 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/10 11:38:50 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:30:42 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void	check_input_validity(t_inputs *inputs, int argc, char **argv)
 		logger(inputs, 'e', "Times a philo must eat must be positive!");
 	else if (ret_val != 0)
 		logger(inputs, 'e', "Input parameters invalid!");
-	if (ret_val == 0 && VERBOSE == 1)
+	if (ret_val == 0 && LOG_INPUTS == 1)
 	{
 		logger(inputs, 'l', "Input parameters are valid!");
 		print_inputs(*inputs);
 	}
-	else
+	else if (ret_val != 0)
 		exit(1);
 }
 
@@ -46,11 +46,11 @@ int	main(int argc, char **argv)
 	int				death_flag;
 	pthread_t		*threads;
 
+	printf("aaaaaaaaaaaaaaah");
 	check_input_validity(&inputs, argc, argv);
 	inputs.program_start_time = get_ms_timestamp();
 	death_flag = 0;
-	if (VERBOSE)
-		printf("Program start time: %lu\n", inputs.program_start_time);
+	printf("im about to setup philos fuck how is this so hard");
 	threads = setup_philos(&inputs, &death_flag);
 	if (!threads)
 		return (cleanup(&inputs, NULL), -1);

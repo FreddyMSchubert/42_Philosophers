@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:07 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 08:38:53 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:10:40 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // prints before threading, thus no need for mutex
 void	print_inputs(t_inputs inputs)
 {
-	if (VERBOSE != 1)
+	if (LOG_INPUTS != 1)
 		return ;
 	printf("Number of Philosophers: %d\n", inputs.number_of_philosophers);
 	printf("Time to Die: %d\n", inputs.time_to_die);
@@ -25,15 +25,6 @@ void	print_inputs(t_inputs inputs)
 	printf("Time to Sleep: %d\n", inputs.time_to_sleep);
 	printf("Number of Times Each Philosopher Must Eat: %d\n", \
 							inputs.times_a_philo_must_eat);
-}
-
-void	print_philo_input_data(t_philo_inputs *philo_input)
-{
-	if (VERBOSE == 0)
-		return ;
-	printf("----- PHILO %d:\n", philo_input->phid);
-	print_inputs(philo_input->inputs);
-	printf("\n");
 }
 
 /*
@@ -44,7 +35,7 @@ void	print_philo_input_data(t_philo_inputs *philo_input)
 */
 void	logger(t_inputs *inputs, char type, char *msg)
 {
-	if (VERBOSE != 1)
+	if (LOG_INPUTS != 1)
 		return ;
 	if (inputs->printing_mutex)
 		pthread_mutex_lock(inputs->printing_mutex);
@@ -64,24 +55,17 @@ void	log_philo_action(t_philo_inputs *in, char *msg, char *emoji)
 	int				philo_color;
 	unsigned long	time;
 
+	printf("im about to lock some thingssssss");
 	time = get_ms_timestamp() - in->inputs.program_start_time;
 	philo_color = (in->phid % 6) + 31;
 	pthread_mutex_lock(in->inputs.printing_mutex);
-	if (COLORFULOUTPUT == 1 && EMOJIS == 0)
-		printf("%lu\t\033[%dm%d %s\033[0m\n", time, philo_color, in->phid, msg);
-	else if (COLORFULOUTPUT == 1 && EMOJIS == 1)
-		printf("%lu\t\033[%dm%d %s %s\033[0m\n", time, philo_color, \
-							in->phid, emoji, msg);
-	else if (COLORFULOUTPUT == 0 && EMOJIS == 1)
-		printf("%lu %d %s %s\n", time, in->phid, emoji, msg);
-	else
-		printf("%lu %d %s\n", time, in->phid, msg);
+	printf("%lu ", time);
+	if (COLORFULOUTPUT == 1)
+		printf("\t\033[%dm", philo_color);
+	if (EMOJIS == 1)
+		printf("%s ", emoji);
+	printf("%d %s\n", in->phid, msg);
+	if (COLORFULOUTPUT == 1)
+		printf("\033[0m");
 	pthread_mutex_unlock(in->inputs.printing_mutex);
-}
-
-void	log_detailed_philo_action(t_philo_inputs *in, char *msg, char *emoji)
-{
-	if (DETAILEDMESSAGES == 0)
-		return ;
-	log_philo_action(in, msg, emoji);
 }

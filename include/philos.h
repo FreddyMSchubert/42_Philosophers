@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 08:39:16 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:20:15 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@
 
 #include "./colors.h" // ANSI color codes collection
 
-#define VERBOSE 1
-#define COLORFULOUTPUT 1
-#define DETAILEDMESSAGES 0
-#define EMOJIS 1
+#define LOG_INPUTS 0
+#define COLORFULOUTPUT 0
+#define EMOJIS 0
 
 // --- STRUCTS
 
@@ -81,11 +80,8 @@ void			cleanup(t_inputs *inputs, pthread_t *threads);
 int				ft_atoi(const char *s);
 //  PRINTING
 void			print_inputs(t_inputs inputs);
-void			print_philo_input_data(t_philo_inputs *philo_input);
 void			logger(t_inputs *inputs, char type, char *message);
 void			log_philo_action(t_philo_inputs *in, char *msg, char *emoji);
-void			log_detailed_philo_action(t_philo_inputs *in, char *msg, \
-													char *emoji);
 // TIME
 unsigned long	get_ms_timestamp(void);
 void			ft_sleep(unsigned long ms, t_philo_inputs *philo_inputs);

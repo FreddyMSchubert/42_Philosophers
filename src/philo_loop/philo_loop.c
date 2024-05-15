@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 08:37:47 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:22:15 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	*philo_loop(void *arg)
 	int				current_step;
 	int				ret_val;
 
+	printf("im about to lock some thingssssss");
 	current_step = 0;
 	philo_inputs = (t_philo_inputs *)arg;
 	last_meal_time = get_ms_timestamp();
@@ -89,7 +90,6 @@ void	*philo_loop(void *arg)
 		else if (ret_val == 2)
 			return (NULL);
 	}
-	// printf("death flag: %d\n", get_death_flag(philo_inputs));
 	die(philo_inputs);
 	return (NULL);
 }
