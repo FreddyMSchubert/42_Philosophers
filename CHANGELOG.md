@@ -1,5 +1,10 @@
 # Philosophers Changelog
 
+## v0.6.7 - 15.05.2024
+- valgrind
+	- fixed death flag mutex not being cleaned up in cleanup function
+- helgrind also fine, lets go
+
 ### v0.6.6 - 15.05.2024
 - i broke the death flag thing - now everybody dies without checking the others. FIXED! quick push, should have checked that before pushing the last commit
 

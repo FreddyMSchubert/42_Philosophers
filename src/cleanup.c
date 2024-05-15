@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 08:45:33 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:52:30 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:23:15 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ void	cleanup(t_inputs *inputs, pthread_t *threads)
 	{
 		pthread_mutex_destroy(inputs->printing_mutex);
 		free(inputs->printing_mutex);
+	}
+	if (inputs->death_flag_mutex)
+	{
+		pthread_mutex_destroy(inputs->death_flag_mutex);
+		free(inputs->death_flag_mutex);
 	}
 	if (inputs->philo_inputs)
 		free(inputs->philo_inputs);
