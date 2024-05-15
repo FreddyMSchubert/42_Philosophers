@@ -86,9 +86,8 @@ int	philo_eat(t_philo_inputs *philo_inputs, \
 	if (philo_inputs->inputs.number_of_philos == 1)
 		return (ft_sleep(philo_inputs->inputs.time_to_die, philo_inputs, \
 								*last_meal), -1);
-	if (wait_until_eat_time(philo_inputs, last_meal) == false)
-		return (-1);
-	if (determine_fork_order(philo_inputs, &fork1, &fork2) == -1)
+	if (wait_until_eat_time(philo_inputs, last_meal) == false || \
+		determine_fork_order(philo_inputs, &fork1, &fork2) == -1)
 		return (-1);
 	pthread_mutex_lock(philo_inputs->inputs.fork_mutexes[fork1]);
 	philo_inputs->inputs.forks[fork1] = true;
