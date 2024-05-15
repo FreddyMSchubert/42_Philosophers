@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:14 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/15 10:48:16 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:21:55 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static bool	wait_until_eat_time(t_philo_inputs *philo_inputs, \
 	{
 		if (dead(philo_inputs, last_meal, NULL))
 			return (false);
-		ft_sleep(100, philo_inputs);
+		ft_sleep(100, philo_inputs, *last_meal);
 		current_time = get_ms_timestamp();
 	}
 	return (true);
@@ -73,7 +73,7 @@ static void	eat(t_philo_inputs *philo_inputs, \
 {
 	log_philo_action(philo_inputs, "is eating", "🍝");
 	*last_meal = get_ms_timestamp();
-	ft_sleep(philo_inputs->inputs.time_to_eat, philo_inputs);
+	ft_sleep(philo_inputs->inputs.time_to_eat, philo_inputs, *last_meal);
 	*times_eaten += 1;
 }
 
@@ -84,7 +84,8 @@ int	philo_eat(t_philo_inputs *philo_inputs, \
 	int		fork2;
 
 	if (philo_inputs->inputs.number_of_philos == 1)
-		return (ft_sleep(philo_inputs->inputs.time_to_die, philo_inputs), -1);
+		return (ft_sleep(philo_inputs->inputs.time_to_die, philo_inputs, \
+								*last_meal), -1);
 	if (wait_until_eat_time(philo_inputs, last_meal) == false)
 		return (-1);
 	if (determine_fork_order(philo_inputs, &fork1, &fork2) == -1)

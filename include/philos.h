@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 11:02:25 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:23:20 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ pthread_t		*setup_philos(t_inputs	*inputs);
 
 void			*philo_loop(void *arg);
 
-int				determine_first_philo_to_eat(t_philo_inputs *philo_inputs);
+int				determine_first_philo_to_eat(t_philo_inputs *philo_inputs, \
+									unsigned long last_meal_time);
 
 int				philo_eat(t_philo_inputs *philo_inputs, \
 							unsigned long *last_meal_time, int *times_eaten);
@@ -86,7 +87,8 @@ void			logger(t_inputs *inputs, char type, char *message);
 void			log_philo_action(t_philo_inputs *in, char *msg, char *emoji);
 // TIME
 unsigned long	get_ms_timestamp(void);
-void			ft_sleep(unsigned long ms, t_philo_inputs *philo_inputs);
+void			ft_sleep(unsigned long ms, t_philo_inputs *philo_inputs, \
+								unsigned long last_meal_time);
 int				get_eat_start_softness(t_philo_inputs *philo_inputs);
 // DEATH FLAG
 int				set_death_flag(t_philo_inputs *inputs);

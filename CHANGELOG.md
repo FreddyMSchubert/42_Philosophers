@@ -1,5 +1,8 @@
 # Philosophers Changelog
 
+### v0.6.9 - 15.05.2024
+- fixed problems with case ./philo 5 800 200 200 7, where the start stagger function would calculate a value higher than the death time. intead of fixing that specifically though, I mae ft_sleep take in the last eat time and conceptually not sleep past a philos death, but return. now nowhere in the program, anyone can forgot to die becaue theyre busy, great!
+
 ### v0.6.8 - 15.05.2024
 - made the fork mutexes protect a list of booleans, not be the forks themselves
 - moved death.c to philo_loop folder, makes more sense

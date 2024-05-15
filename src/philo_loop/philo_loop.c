@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:55:34 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:22:57 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,23 @@
 
 // Main loop for the philosopher threads
 
-static void	start_stg(t_philo_inputs *philo_inputs, unsigned int time)
+static void	start_stg(t_philo_inputs *philo_inputs, unsigned int time, \
+							unsigned long last_meal_time)
 {
 	log_philo_action(philo_inputs, "is thinking", "💭");
 	philo_inputs->expected_eat_time = get_ms_timestamp() + \
 											philo_inputs->inputs.time_to_eat;
-	ft_sleep(time, philo_inputs);
+	ft_sleep(time, philo_inputs, last_meal_time);
 }
 
-int	determine_first_philo_to_eat(t_philo_inputs *philo_inputs)
+int	determine_first_philo_to_eat(t_philo_inputs *philo_inputs, \
+									unsigned long last_meal_time)
 {
 	if (philo_inputs->inputs.number_of_philos % 2 == 0)
 	{
 		if (philo_inputs->phid % 2 == 0)
-			start_stg(philo_inputs, philo_inputs->inputs.time_to_eat / 5 * 4);
+			start_stg(philo_inputs, philo_inputs->inputs.time_to_eat / 5 * 4, \
+										last_meal_time);
 		else
 			philo_inputs->expected_eat_time = get_ms_timestamp();
 	}
@@ -35,7 +38,8 @@ int	determine_first_philo_to_eat(t_philo_inputs *philo_inputs)
 	{
 		if (philo_inputs->phid % 3 > 0)
 			start_stg(philo_inputs, philo_inputs->inputs.time_to_eat / 5 * 4 + \
-					philo_inputs->phid % 3 * philo_inputs->inputs.time_to_eat);
+					philo_inputs->phid % 3 * philo_inputs->inputs.time_to_eat, \
+											last_meal_time);
 		else
 			philo_inputs->expected_eat_time = get_ms_timestamp();
 	}
@@ -78,7 +82,7 @@ void	*philo_loop(void *arg)
 	philo_inputs = (t_philo_inputs *)arg;
 	last_meal_time = get_ms_timestamp();
 	times_eaten = 0;
-	determine_first_philo_to_eat(philo_inputs);
+	determine_first_philo_to_eat(philo_inputs, last_meal_time);
 	while (get_ms_timestamp() - last_meal_time < \
 							(unsigned long)philo_inputs->inputs.time_to_die)
 	{
