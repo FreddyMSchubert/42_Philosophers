@@ -1,8 +1,7 @@
 # Philosophers Changelog
 
-## todo
-- clean up philo inputs. inputs contains constants and shared resources, philo inputs are non-shared.
-	- rename philo inputs to phinput
+### v0.6.5 - 15.05.2024
+- moved all shared resources from philo inputs to inputs, that was the death flag & its mutex
 
 ### v0.6.4 - 15.05.2024
 - removed detailed logging functionality

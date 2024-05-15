@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:22:43 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/15 08:37:54 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:52:30 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	calculate_expected_eat_time(t_philo_inputs *philo_inputs, \
 {
 	int	one_cycle_time;
 
-	if (philo_inputs->inputs.number_of_philosophers % 2 == 0)
+	if (philo_inputs->inputs.number_of_philos % 2 == 0)
 	{
 		if (philo_inputs->inputs.time_to_eat > \
 							philo_inputs->inputs.time_to_sleep)
@@ -33,7 +33,7 @@ static void	calculate_expected_eat_time(t_philo_inputs *philo_inputs, \
 		else
 			one_cycle_time = philo_inputs->inputs.time_to_sleep * 3;
 	}
-	if (philo_inputs->inputs.number_of_philosophers == 1)
+	if (philo_inputs->inputs.number_of_philos == 1)
 		one_cycle_time = philo_inputs->inputs.time_to_eat;
 	philo_inputs->expected_eat_time = last_meal_time + one_cycle_time;
 }

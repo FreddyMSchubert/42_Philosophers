@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:58:27 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/10 11:39:13 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:52:30 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	manage_input(int argc, char **argv, t_inputs	*inputs)
 {
 	if (argc < 5 || argc > 6)
 		return (-2);
-	inputs->number_of_philosophers = ft_atoi(argv[1]);
-	if (inputs->number_of_philosophers < 1)
+	inputs->number_of_philos = ft_atoi(argv[1]);
+	if (inputs->number_of_philos < 1)
 		return (-3);
 	inputs->time_to_die = ft_atoi(argv[2]);
 	inputs->time_to_eat = ft_atoi(argv[3]);

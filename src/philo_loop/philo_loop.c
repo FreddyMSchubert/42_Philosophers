@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:48:13 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:22:15 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:55:34 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	start_stg(t_philo_inputs *philo_inputs, unsigned int time)
 
 int	determine_first_philo_to_eat(t_philo_inputs *philo_inputs)
 {
-	if (philo_inputs->inputs.number_of_philosophers % 2 == 0)
+	if (philo_inputs->inputs.number_of_philos % 2 == 0)
 	{
 		if (philo_inputs->phid % 2 == 0)
 			start_stg(philo_inputs, philo_inputs->inputs.time_to_eat / 5 * 4);
@@ -39,7 +39,7 @@ int	determine_first_philo_to_eat(t_philo_inputs *philo_inputs)
 		else
 			philo_inputs->expected_eat_time = get_ms_timestamp();
 	}
-	return (philo_inputs->inputs.number_of_philosophers % 2);
+	return (philo_inputs->inputs.number_of_philos % 2);
 }
 
 // 0 = success, 1 = break, 2 = return
@@ -74,7 +74,6 @@ void	*philo_loop(void *arg)
 	int				current_step;
 	int				ret_val;
 
-	printf("im about to lock some thingssssss");
 	current_step = 0;
 	philo_inputs = (t_philo_inputs *)arg;
 	last_meal_time = get_ms_timestamp();

@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:18:44 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:41:36 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:53:54 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,67 +32,59 @@ static int	allocate_and_init_mutex(pthread_mutex_t **mutex_ptr)
 	return (0);
 }
 
-static t_philo_inputs	*setup_philo_inputs(t_inputs	*inputs, \
-							int *death_flag, pthread_mutex_t *death_flag_mutex)
+static t_philo_inputs	*setup_philo_inputs(t_inputs	*inputs)
 {
 	int					i;
 	t_philo_inputs		*philo_inputs;
 
 	philo_inputs = malloc(sizeof(t_philo_inputs) * \
-							inputs->number_of_philosophers);
+							inputs->number_of_philos);
 	if (!philo_inputs)
 		return (printf("Philo input allocation failed!\n"), NULL);
 	i = -1;
-	while (++i < inputs->number_of_philosophers)
+	while (++i < inputs->number_of_philos)
 	{
 		philo_inputs[i].phid = i;
 		philo_inputs[i].inputs = *inputs;
-		philo_inputs[i].death_flag = death_flag;
 		philo_inputs[i].expected_eat_time = 0;
-		philo_inputs[i].death_flag_mutex = death_flag_mutex;
 	}
 	return (philo_inputs);
 }
 
-static pthread_mutex_t	*allocate_mutexes(t_inputs *inputs)
+static int	allocate_mutexes(t_inputs *inputs)
 {
 	int				i;
-	pthread_mutex_t	*death_flag_mutex;
 
 	i = -1;
-	death_flag_mutex = NULL;
-	while (++i < inputs->number_of_philosophers)
+	while (++i < inputs->number_of_philos)
 		if (allocate_and_init_mutex(&inputs->forks[i]) != 0)
-			return (NULL);
+			return (-1);
 	if (allocate_and_init_mutex(&inputs->printing_mutex) != 0)
-		return (NULL);
-	if (allocate_and_init_mutex(&death_flag_mutex) != 0)
-		return (NULL);
-	return (death_flag_mutex);
+		return (-1);
+	if (allocate_and_init_mutex(&inputs->death_flag_mutex) != 0)
+		return (-1);
+	return (0);
 }
 
-pthread_t	*setup_philos(t_inputs	*inputs, int *death_flag)
+pthread_t	*setup_philos(t_inputs	*inputs)
 {
 	int					i;
-	pthread_mutex_t		**forks;
-	pthread_mutex_t		*death_flag_mutex;
 	pthread_t			*threads;
 	t_philo_inputs		*philo_inputs;
 
-	forks = malloc(sizeof(pthread_mutex_t *) * inputs->number_of_philosophers);
-	threads = malloc(sizeof(pthread_t) * inputs->number_of_philosophers);
-	if (!forks || !threads)
+	inputs->death_flag = 0;
+	inputs->forks = malloc(sizeof(pthread_mutex_t *) * \
+									inputs->number_of_philos);
+	threads = malloc(sizeof(pthread_t) * inputs->number_of_philos);
+	if (!inputs->forks || !threads)
 		return (printf("Fork mallocation failed.\n"), NULL);
-	death_flag_mutex = allocate_mutexes(inputs);
-	if (death_flag_mutex == NULL)
+	if (allocate_mutexes(inputs) != 0)
 		return (printf("Mutex allocation failed.\n"), NULL);
-	inputs->forks = forks;
-	philo_inputs = setup_philo_inputs(inputs, death_flag, death_flag_mutex);
+	philo_inputs = setup_philo_inputs(inputs);
 	if (!philo_inputs)
 		return (printf("Philo input setup failed.\n"), NULL);
 	i = -1;
-	printf("im about to lock some thingssssss creating some philos");
-	while (++i < inputs->number_of_philosophers)
+	while (++i < inputs->number_of_philos)
 		pthread_create(&threads[i], NULL, philo_loop, &philo_inputs[i]);
 	inputs->philo_inputs = philo_inputs;
 	return (threads);

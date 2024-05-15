@@ -6,18 +6,18 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 08:45:33 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/10 11:41:48 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:52:30 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philos.h"
 
-static void	cleanup_threads(pthread_t *threads, int number_of_philosophers)
+static void	cleanup_threads(pthread_t *threads, int number_of_philos)
 {
 	int		counter;
 
 	counter = -1;
-	while (++counter < number_of_philosophers)
+	while (++counter < number_of_philos)
 		pthread_join(threads[counter], NULL);
 	free(threads);
 }
@@ -27,9 +27,9 @@ void	cleanup(t_inputs *inputs, pthread_t *threads)
 	int		counter;
 
 	if (threads)
-		cleanup_threads(threads, inputs->number_of_philosophers);
+		cleanup_threads(threads, inputs->number_of_philos);
 	counter = -1;
-	while (++counter < inputs->number_of_philosophers && inputs->forks != NULL)
+	while (++counter < inputs->number_of_philos && inputs->forks != NULL)
 	{
 		if (inputs->forks[counter])
 		{

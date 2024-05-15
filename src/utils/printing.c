@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 09:11:07 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/15 09:10:40 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 09:55:37 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_inputs(t_inputs inputs)
 {
 	if (LOG_INPUTS != 1)
 		return ;
-	printf("Number of Philosophers: %d\n", inputs.number_of_philosophers);
+	printf("Number of Philosophers: %d\n", inputs.number_of_philos);
 	printf("Time to Die: %d\n", inputs.time_to_die);
 	printf("Time to Eat: %d\n", inputs.time_to_eat);
 	printf("Time to Sleep: %d\n", inputs.time_to_sleep);
@@ -55,7 +55,6 @@ void	log_philo_action(t_philo_inputs *in, char *msg, char *emoji)
 	int				philo_color;
 	unsigned long	time;
 
-	printf("im about to lock some thingssssss");
 	time = get_ms_timestamp() - in->inputs.program_start_time;
 	philo_color = (in->phid % 6) + 31;
 	pthread_mutex_lock(in->inputs.printing_mutex);
