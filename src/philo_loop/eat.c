@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 11:18:14 by freddy            #+#    #+#             */
-/*   Updated: 2024/05/15 12:21:55 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:39:58 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ int	philo_eat(t_philo_inputs *philo_inputs, \
 		return (-1);
 	log_philo_action(philo_inputs, "has taken a fork", "🍴");
 	eat(philo_inputs, last_meal, times_eaten);
-	pthread_mutex_unlock(philo_inputs->inputs.fork_mutexes[fork1]);
 	philo_inputs->inputs.forks[fork1] = false;
-	pthread_mutex_unlock(philo_inputs->inputs.fork_mutexes[fork2]);
+	pthread_mutex_unlock(philo_inputs->inputs.fork_mutexes[fork1]);
 	philo_inputs->inputs.forks[fork2] = false;
+	pthread_mutex_unlock(philo_inputs->inputs.fork_mutexes[fork2]);
 	return (0);
 }
