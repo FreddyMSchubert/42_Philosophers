@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 08:50:34 by fschuber          #+#    #+#             */
-/*   Updated: 2024/05/16 08:45:48 by fschuber         ###   ########.fr       */
+/*   Updated: 2024/05/16 09:05:43 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 #define VERBOSE 1
 #define COLORFULOUTPUT 1
-#define EMOJIS 0
+#define EMOJIS 1
 
 // --- STRUCTS
 

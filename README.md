@@ -1,7 +1,7 @@
 # `Philosophers` by fschuber
 ### I never thought philosophy would be so deadly...
 
-![Deadlock - this is what we gotta prevent.](https://github.com/FreddyMSchubert/42_Philosophers/blob/master/assets/philos_visualization.png "Deadlock - this is what we gotta prevent.")
+![Example philo output](https://github.com/FreddyMSchubert/42_Philosophers/blob/master/assets/execution-gif.gif "Example philo output")
 
 > The Philosophers Problem is a classic problem in computer science that illustrates issues related to resource sharing and concurrency.\
 > Imagine five philosophers sitting around a table. Each philosopher alternates between thinking and eating. 🍽️💭 \
@@ -9,6 +9,12 @@
 > So, it’s all about balancing limited resources and ensuring smooth operations—a vital aspect of designing operating systems and concurrent programming. 🎉🔧
 
 thanks, chatgpt!
+
+Here's how you can imagine it:
+
+![Philo Visualization](https://github.com/FreddyMSchubert/42_Philosophers/blob/master/assets/philos_visualization.png "Philo Visualization")
+
+yes thanks i know im an artist
 
 # Installation / How to use
 
@@ -29,7 +35,9 @@ Execute
 - time_to_die -> time a philosopher will stay alive after eating (in ms)
 - time_to_eat -> time it takes a philosopher to eat (in ms)
 - time_to_sleep -> time it takes a philosopher to sleep (in ms)
-- number_of_times_each_philosopher_must_eat -> optional parameter, many cases will run infinitely. to prevent that, each philo will count how often theyve eaten and will perish (don't think about it) once they've exceeded this number
+- number_of_times_each_philosopher_must_eat -> optional parameter, many cases will run infinitely. to prevent that, each philo will count how often theyve eaten and will perish (don't think about it) once they've exceeded this number. (otherwise exiting with ctrl+c always works)
+
+It's important to note that not every case can work - that's not a fault of the program. If every philosopher has to eat every millisecond but sleep for a minute, that won't work.
 
 e.g.
 
@@ -42,6 +50,8 @@ e.g.
 # Approach
 
 ![Deadlock - this is what we gotta prevent.](https://github.com/FreddyMSchubert/42_Philosophers/blob/master/assets/bruh.png "Deadlock - this is what we gotta prevent.")
+
+> ⬆ DEADLOCK - this is what we have to prevent. This does no longer occur in the project in it's current state.
 
 Granted a baseline functional setup with philos and forks not doing anything unexpected, here's the potential pitfalls:
 
@@ -58,9 +68,9 @@ Here are the solutions I used to prevent things like that:
 
 2. Start off each philosopher picking up another fork first - We can use this to our advantage by having every second philosopher pick up their right fork first and every other philosopher their left fork first. This makes fork deadlocks `impossible`. Simple method, but it helped a lot!
 
-3. Finally, I had problems with philosophers taking another hilosophers eating spot - the pattern seen in the image right about would sometimes break at random, and an unexpected philo would grab a fork, not even noticing the death of their neighbour in deep concentration!
-	- To fix this, I implemented a scheduling system where each philosopher calculates their expected eating time and if the philosopher would be able to pick up a fork but is still not close to this time they will just leave the fork lie there. This fixed the problem!
-	- I have not talked to anyone else who had this problem - but who cares, this philosophers implementation is now by far the most stable I've seen around.
+3. Finally, I had problems with philosophers taking another philosophers eating spot - the pattern seen in the image right about would sometimes break at random, and an unexpected philo would grab a fork, not even noticing the death of their neighbour in deep concentration!
+	- To fix this, I implemented a scheduling system where each philosopher calculates their expected eating time and if the philosopher would be able to pick up a fork but is still not close to this time they will just leave the fork lie there. This fixed the problem! Just make philosophers only eat when they are actually hungry.
+	- I have not talked to anyone else who had this problem - some random chance must have played its part there, this philosophers implementation is now by far the most stable I've seen around.
 
 > Those 3 ideas combined made my program run smoothly every time.
 
